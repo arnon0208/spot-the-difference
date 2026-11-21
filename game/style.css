@@ -1,0 +1,203 @@
+* { box-sizing: border-box; }
+
+/* The overlay and play screens set display in CSS, which would override
+   the hidden attribute's default display:none — force hidden to win. */
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #171a26;
+  color: #f2f0e6;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+#app {
+  width: 1280px;
+  height: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: #1d2133;
+  overflow: hidden;
+}
+
+#hud {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 10px 20px;
+  background: #232842;
+  border-bottom: 3px solid #f2a541;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: 1px;
+  color: #ffd94a;
+}
+
+.brand .tagline {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #9aa3c7;
+}
+
+.level-info { min-width: 240px; }
+.level-info p { margin: 0; }
+#level-name { font-size: 19px; font-weight: 700; }
+#level-sub { font-size: 12px; color: #9aa3c7; }
+
+.timer { flex: 1; }
+#time-text {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+}
+.time-bar {
+  height: 10px;
+  background: #14172a;
+  border-radius: 5px;
+  overflow: hidden;
+}
+#time-fill {
+  height: 100%;
+  width: 100%;
+  background: #2ecc40;
+  transition: width 0.9s linear;
+}
+#time-fill.low { background: #e5484d; }
+
+.score-box, .found-box { text-align: right; min-width: 110px; }
+.score-box p, .found-box p { margin: 0; }
+.label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #9aa3c7; }
+#score-text { font-size: 24px; font-weight: 700; color: #ffd94a; }
+#combo-text { font-size: 12px; color: #7be382; min-height: 14px; }
+#found-text { font-size: 17px; font-weight: 700; }
+
+#stage { position: relative; flex: 1; }
+#screen-play { height: 100%; display: flex; flex-direction: column; }
+
+.panels {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 14px 20px 6px;
+}
+
+.panel { margin: 0; }
+.panel figcaption {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #c8cde6;
+}
+.panel-tag {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 50%;
+  background: #f2a541;
+  color: #171a26;
+  margin-right: 6px;
+}
+
+#panel-left, #panel-right {
+  display: block;
+  width: 600px;
+  height: 460px;
+  border: 3px solid #3a4066;
+  border-radius: 8px;
+  cursor: crosshair;
+  background: #0b1030;
+}
+
+#lens {
+  position: fixed;
+  display: none;
+  width: 156px;
+  height: 156px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+#event-text {
+  margin: 4px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: #c8cde6;
+  min-height: 20px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 14, 28, 0.82);
+  z-index: 10;
+}
+
+.card {
+  width: 560px;
+  padding: 28px 32px;
+  background: #232842;
+  border: 2px solid #f2a541;
+  border-radius: 12px;
+  text-align: center;
+}
+.card h2 { margin: 0 0 4px; font-size: 32px; color: #ffd94a; }
+.card-sub { margin: 0 0 14px; letter-spacing: 3px; text-transform: uppercase; color: #9aa3c7; }
+.card p { font-size: 15px; line-height: 1.5; }
+.big-score { font-size: 22px; font-weight: 700; }
+.big-score span { color: #ffd94a; font-size: 34px; }
+.keys { font-size: 12px; color: #9aa3c7; }
+
+button {
+  font: inherit;
+  color: #171a26;
+  background: #ffd94a;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+button:hover { background: #ffe27a; }
+button:disabled { opacity: 0.45; cursor: default; }
+button.big { font-size: 19px; padding: 12px 34px; margin: 10px 0; }
+
+.level-pick { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+.level-pick button { background: #3a4066; color: #f2f0e6; font-weight: 600; }
+.level-pick button:hover { background: #4a5280; }
+
+#screen-win .card button, #screen-time-up .card button { margin: 6px 4px; }
+
+#controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: #232842;
+  border-top: 2px solid #3a4066;
+}
+#controls button { background: #3a4066; color: #f2f0e6; padding: 8px 14px; }
+#controls button:hover { background: #4a5280; }
+.hint-line { margin: 0 0 0 auto; font-size: 12px; color: #9aa3c7; max-width: 480px; text-align: right; }
+
+#status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

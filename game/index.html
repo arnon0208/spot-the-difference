@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twin Valley — Spot the Difference</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app">
+  <header id="hud">
+    <div class="brand">
+      <h1>Twin Valley</h1>
+      <p class="tagline">Spot the Difference</p>
+    </div>
+    <div class="level-info">
+      <p id="level-name">Sunny Meadow</p>
+      <p id="level-sub">Level 1 · 5 differences · 120 seconds</p>
+    </div>
+    <div class="timer">
+      <p id="time-text">2:00</p>
+      <div class="time-bar"><div id="time-fill"></div></div>
+    </div>
+    <div class="score-box">
+      <p class="label">Score</p>
+      <p id="score-text">0</p>
+      <p id="combo-text"></p>
+    </div>
+    <div class="found-box">
+      <p class="label">Found</p>
+      <p id="found-text">0 / 5 found · 5 left</p>
+    </div>
+  </header>
+
+  <main id="stage">
+    <div id="screen-play">
+      <div class="panels">
+        <figure class="panel">
+          <figcaption><span class="panel-tag">A</span> Original</figcaption>
+          <canvas id="panel-left" width="600" height="460"></canvas>
+        </figure>
+        <figure class="panel">
+          <figcaption><span class="panel-tag">B</span> Changed</figcaption>
+          <canvas id="panel-right" width="600" height="460"></canvas>
+        </figure>
+      </div>
+      <canvas id="lens" width="156" height="156"></canvas>
+      <p id="event-text">Click a difference on either picture. Wrong clicks cost 2 seconds.</p>
+    </div>
+
+    <div id="screen-menu" class="overlay" hidden>
+      <div class="card">
+        <h2>Twin Valley</h2>
+        <p class="card-sub">Spot the Difference</p>
+        <p>Two pictures hang side by side. They look the same — but a few small
+        things changed in the second one. Find them all before the clock runs out.
+        Click a difference on either picture. Chain finds for a combo bonus,
+        spend a hint when you are stuck, and hold the magnifier over the details.</p>
+        <button id="play-button" class="big">Play</button>
+        <div class="level-pick">
+          <button data-level="0">Level 1 · Sunny Meadow · 5 diffs</button>
+          <button data-level="1">Level 2 · Harbor Dusk · 6 diffs</button>
+          <button data-level="2">Level 3 · Starry Village · 7 diffs</button>
+        </div>
+        <p class="keys">Keys: H hint · M magnifier · R restart level</p>
+      </div>
+    </div>
+
+    <div id="screen-level-done" class="overlay" hidden>
+      <div class="card">
+        <h2 id="level-done-title">Level clear!</h2>
+        <p id="level-done-text"></p>
+        <button id="next-button" class="big">Next level</button>
+      </div>
+    </div>
+
+    <div id="screen-win" class="overlay" hidden>
+      <div class="card">
+        <h2>You found them all!</h2>
+        <p>Every difference in every valley scene, found.</p>
+        <p class="big-score"><span id="win-score">0</span> points</p>
+        <p id="win-stats"></p>
+        <button id="again-button" class="big">Play again</button>
+        <button id="win-menu-button">Back to menu</button>
+      </div>
+    </div>
+
+    <div id="screen-time-up" class="overlay" hidden>
+      <div class="card">
+        <h2>Time's up!</h2>
+        <p id="time-up-text"></p>
+        <button id="retry-button" class="big">Try this level again</button>
+        <button id="timeup-menu-button">Back to menu</button>
+      </div>
+    </div>
+  </main>
+
+  <footer id="controls">
+    <button id="hint-button"><span id="hint-text">Hint (3)</span> · H</button>
+    <button id="lens-button">Magnifier: on (M)</button>
+    <button id="restart-button">Restart level · R</button>
+    <button id="menu-button">Menu</button>
+    <p class="hint-line">Tip: differences hide in plain sight — a colour, a missing bird, an extra crate. The gold ring is a hint.</p>
+  </footer>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
